@@ -1,0 +1,64 @@
+<%include ../partials/header %>
+
+<div class="container-fluid">
+    <h3 class="text-dark mb-4">Report</h3>
+    <div class="card shadow">
+        <div class="card-header py-3 clearfix">
+            <p class="text-primary m-0 font-weight-bold float-left">Start Date: <%=new Date(start).toDateString()%></p>
+            <p class="text-primary m-0 font-weight-bold float-right">End Date: <%=new Date(end).toDateString()%></p>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table dataTable my-0" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>category</th>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% invoices.forEach((invoice) => { %>
+                        <tr>
+                            <td><span><%=invoice.owner.firstName%></span> <span><%=invoice.owner.lastName%></span></td>
+                            <td><%=invoice.category%></td>
+                            <td><%=invoice.title%></td>
+                            <td>$<%=invoice.amount%></td>
+                            <td><% if (invoice.isPaid){ %>
+                                Paid
+                                <%} else { %>
+                                Not Paid
+                                <% } %></td>
+                            <td><%= invoice.due.toDateString() %></td>
+                        </tr>
+                        <%}) %>
+                        
+                        
+                    </tbody>
+                    <div class="font-weight-bold">
+                        <h5 class="font-weight-bold">Summary:</h5>
+                        <strong><hr></strong>
+                        <div class="clearfix d-flex flex-column align-items-end mt-4">
+                        <p class="float-right">Total Amount: $<%=totalAmount%></p>
+                        <p>Paid Amount: $<%=paidAmount%></p>
+                        <strong><hr></strong>
+                        <p>Outstanding Debts: $<%=debts%></p> 
+                        <strong><hr></strong>
+                        </div>
+                        
+                    </div>
+
+                </table>
+            </div>
+            <div class="row">
+            
+        </div>
+    </div>
+</div>
+</div>
+
+<%include ../partials/footer %>

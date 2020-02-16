@@ -1,0 +1,71 @@
+<% include ../partials/header.ejs %>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="card">
+                  <div class="card-header">
+                  Invoice
+                  <strong><%=invoice.reference%></strong> 
+                    <span class="float-right"> <strong>Status:</strong><% if (invoice.isPaid){ %>
+                      Paid
+                    
+                    <%}else{%>
+                      Pending
+                      <span><button class="btn btn-info btn-sm" onclick="window.location.href = '/verify/<%=invoice.reference%>';">query payment</button></span>
+                    <%} %></span> 
+                  
+                  </div>
+                  <div class="card-body">
+                  <div class="row mb-4">
+                  <div class="col-sm-6">
+                  <h6 class="mb-3">From:</h6>
+                  <div>
+                  <strong>Revenue Collection</strong>
+                  </div>
+                  <div>University of Benin</div>
+                  <div>Ugbowo, Benin city</div>
+                  <div>Email: revenue@uniben.edu</div>
+                  <div>Phone: +2348000000000</div>
+                  </div>
+                  
+                  <div class="col-sm-6">
+                  <h6 class="mb-3">To:</h6>
+                  <div>
+                  <strong><span><%=currentUser.firstName%> </span><span><%=currentUser.lastName%></span></strong>
+                  </div>
+                  <div>Somewhere in The middle</div>
+                  <div>Email: <%=currentUser.email%></div>
+                  <div>Phone: +123567890</div>
+                  </div>
+                  
+                  
+                  
+                  </div>
+                  <hr>
+                  <div class="card-body">
+                    <div class="container">
+                      <div>
+                        <h5>Invoice Details</h5>
+                      </div>
+                      <hr>
+                      <div class="clearfix">
+                      <p class="float-right">Due Date: <%=invoice.due.toDateString()%></p>
+                      <p class="float-left">Created: <%=invoice.createdAt.toDateString()%></p> 
+                      </div>
+                      <div class="clearfix d-flex justify-content-center">
+                          <h5 class="font-weight-bold">Invoice amount: <span>$</span><span><%=invoice.amount%></span></h5>
+                      </div>
+                      <% if(!invoice.isPaid) {%>
+                      <div class="clearfix d-flex justify-content-center mt-4">
+                        <button class="btn btn-success" onclick="window.location.href = '<%=invoice.url%>';">Pay now</button>
+                      </div>
+                      <%}%>
+                      
+                    </div>
+                  </div>
+                  
+                  </div>
+                  </div>
+                  </div>
+            </div>
+        </div>
+<% include ../partials/footer %>
