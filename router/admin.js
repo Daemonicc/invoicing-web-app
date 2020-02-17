@@ -78,7 +78,7 @@ router.post('/bill/:id', async(req, res) => {
         await fetch('https://api.paystack.co/transaction/initialize/', {
             method: 'post',
             headers: {
-                'authorization': 'Bearer sk_test_dd97125d29c0b996f4d906a37107ee985fc13db7', 
+                'authorization': process.env.PAYSTACK_API_KEY, 
                 'content-type': 'application/json'},
             body: JSON.stringify(body)
         }).then((res) => res.json())

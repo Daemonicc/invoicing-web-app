@@ -6,7 +6,7 @@ try{
     await fetch('https://api.paystack.co/transaction/verify/'+ ref, {
         method: 'get',
         headers: {
-            'authorization': 'Bearer sk_test_dd97125d29c0b996f4d906a37107ee985fc13db7'
+            'authorization': process.env.PAYSTACK_API_KEY
         }
     }).then((res) => res.json())
     .then((json) => {

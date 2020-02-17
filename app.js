@@ -8,6 +8,7 @@ const passport = require('passport')
 const localStrategy = require('passport-local')
 const User = require('./models/user')
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const app = express()
 

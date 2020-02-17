@@ -21,7 +21,7 @@ router.get('/invoice/:id', auth.isLoggedIn, async (req, res) => {
         await fetch('https://api.paystack.co/transaction/verify/'+ invoice.reference, {
             method: 'get',
             headers: {
-                'authorization': 'Bearer sk_test_dd97125d29c0b996f4d906a37107ee985fc13db7'
+                'authorization': process.env.PAYSTACK_API_KEY
             }
         }).then((res) => res.json())
         .then((json) => {
@@ -58,7 +58,7 @@ router.get('/verify/:id',auth.isLoggedIn, async (req, res) => {
         await fetch('https://api.paystack.co/transaction/verify/'+ req.params.id, {
             method: 'get',
             headers: {
-                'authorization': 'Bearer sk_test_dd97125d29c0b996f4d906a37107ee985fc13db7'
+                'authorization': process.env.PAYSTACK_API_KEY
             }
         }).then((res) => res.json())
         .then((json) => {
